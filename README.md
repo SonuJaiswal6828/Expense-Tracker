@@ -1,37 +1,76 @@
-# 💸 Expense Tracker Pro
+# 💸 Expense Tracker
 
-Ek modern aur secure **Flask-based Web Application** jo aapke daily expenses ko cloud par manage karti hai. Ye project **Aiven Cloud MySQL** database ke saath integrated hai aur **Render** par live hosted hai.
-
----
-
-## 🚀 Live Project Link
-Aap meri app yahan check kar sakte hain:
-👉 [https://expense-tracker-45l8.onrender.com](https://expense-tracker-45l8.onrender.com)
+A modern and secure **Flask-based Web Application** designed to manage your daily expenses on the cloud. This project is integrated with an **Aiven Cloud MySQL** database and is live-hosted on **Render**.
 
 ---
 
-## ✨ Key Features
+## 🚀 Live Demo
+Check out the live application here:
+👉 [https://your-app-name.onrender.com](https://your-app-name.onrender.com)
 
-* **Expense Management**: Add, view, aur delete kar sakte hain apne kharche.
-* **Cloud Database**: Data secure aur permanent hai Aiven MySQL ke saath.
-* **Scalable Architecture**: `users` table pehle se hi ready hai login/signup implementation ke liye.
-* **Production Ready**: Gunicorn aur SSL connection ke saath Render par deployed hai.
+---
+
+## ✨ Features
+
+* **Expense Management**: Easily add, view, and delete your financial records.
+* **Cloud Integration**: Data is persistently stored and secured using Aiven MySQL.
+* **User System Ready**: Includes a `users` table schema for future authentication and login features.
+* **Production Optimized**: Configured with Gunicorn and SSL for stable deployment on Render.
 
 ---
 
 ## 🛠️ Tech Stack
 
-* **Language**: Python 3.x
-* **Framework**: Flask
+* **Backend**: Python 3.13 / Flask
 * **Database**: MySQL (Aiven Cloud)
-* **Libraries**: PyMySQL, Flask-SQLAlchemy, Dotenv
-* **Hosting**: Render
+* **Deployment**: Render (Web Service)
+* **Libraries**: PyMySQL, Flask-SQLAlchemy, Python-Dotenv
 
 ---
 
-## 📦 Local Installation
+## 📦 Local Setup & Installation
 
-1. **Clone the Repository**:
-   ```bash
-   git clone [https://github.com/your-username/your-repo-name.git](https://github.com/your-username/your-repo-name.git)
-   cd your-repo-name
+1.  **Clone the Repository**:
+    ```bash
+    git clone [https://github.com/your-username/your-repo-name.git](https://github.com/your-username/your-repo-name.git)
+    cd your-repo-name
+    ```
+
+2.  **Install Dependencies**:
+    ```bash
+    pip install -r requirements.txt
+    ```
+
+3.  **Environment Configuration**:
+    Create a `.env` file in the root folder and add your credentials (Do NOT share this file):
+    ```env
+    DB_HOST=your_aiven_host_here
+    DB_USER=your_username
+    DB_PASSWORD=your_secure_password
+    DB_NAME=defaultdb
+    DB_PORT=your_port
+    ```
+
+4.  **Run the App**:
+    ```bash
+    python app.py
+    ```
+
+---
+
+## 🗄️ Database Schema
+
+The system utilizes two primary tables within the `defaultdb`:
+* **`expenses`**: Tracks `id`, `amount`, `category`, `note`, and `timestamp`.
+* **`users`**: Manages `id`, `username`, `email`, and `password` for authentication.
+
+---
+
+## 🛡️ Security Best Practices
+
+* **Environment Variables**: All sensitive credentials are managed via `.env` and excluded from version control using `.gitignore`.
+* **SSL Encryption**: Secure connection strings (SSL) are required to communicate with the Aiven MySQL instance.
+
+---
+
+### Developed by [Your Name]
