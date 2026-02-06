@@ -1,23 +1,37 @@
-💸 Expense Tracker Pro
-Ek simple aur powerful Flask-based Web Application jo aapke kharche manage karne mein madad karti hai. Ye project Aiven Cloud MySQL database ke saath integrated hai aur Render par live deployed hai.
+# 💸 Expense Tracker Pro
 
-🚀 Live Demo
-Aap meri app yahan dekh sakte hain: https://expense-tracker-45l8.onrender.com
+Ek modern aur secure **Flask-based Web Application** jo aapke daily expenses ko cloud par manage karti hai. Ye project **Aiven Cloud MySQL** database ke saath integrated hai aur **Render** par live hosted hai.
 
-✨ Features
-Add Expenses: Amount, category aur notes ke saath kharche record karein.
+---
 
-User Management: Secure user table for future login/signup implementation.
+## 🚀 Live Project Link
+Aap meri app yahan check kar sakte hain:
+👉 [https://expense-tracker-45l8.onrender.com](https://expense-tracker-45l8.onrender.com)
 
-Cloud Database: Data hamesha safe rahega Aiven MySQL par.
+---
 
-Responsive UI: Mobile aur Desktop dono par sahi chalta hai.
+## ✨ Key Features
 
-🛠️ Tech Stack
-Frontend: HTML5, CSS3, Jinja2 Templates.
+* **Expense Management**: Add, view, aur delete kar sakte hain apne kharche.
+* **Cloud Database**: Data secure aur permanent hai Aiven MySQL ke saath.
+* **Scalable Architecture**: `users` table pehle se hi ready hai login/signup implementation ke liye.
+* **Production Ready**: Gunicorn aur SSL connection ke saath Render par deployed hai.
 
-Backend: Python (Flask Framework).
+---
 
-Database: MySQL (Aiven Cloud).
+## 🛠️ Tech Stack
 
-Deployment: Render.
+* **Language**: Python 3.x
+* **Framework**: Flask
+* **Database**: MySQL (Aiven Cloud)
+* **Libraries**: PyMySQL, Flask-SQLAlchemy, Dotenv
+* **Hosting**: Render
+
+---
+
+## 📦 Local Installation
+
+1. **Clone the Repository**:
+   ```bash
+   git clone [https://github.com/your-username/your-repo-name.git](https://github.com/your-username/your-repo-name.git)
+   cd your-repo-name
