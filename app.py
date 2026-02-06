@@ -10,12 +10,13 @@ app = Flask(__name__)
 
 def get_db():
     return pymysql.connect(
-        # os.getenv('KEY', 'default_value') format use karna safe hai
-        host=os.getenv('DB_HOST', 'localhost'),
-        user=os.getenv('DB_USER', 'root'),
-        password=os.getenv('DB_PASSWORD', ''),
-        database=os.getenv('DB_NAME', 'expense_tracker'),
-        cursorclass=pymysql.cursors.DictCursor
+        host=os.getenv('DB_HOST'),
+        port=int(os.getenv('DB_PORT', 26713)), # Aapka port 26713 hai
+        user=os.getenv('DB_USER'),
+        password=os.getenv('DB_PASSWORD'),
+        database=os.getenv('DB_NAME'),
+        cursorclass=pymysql.cursors.DictCursor,
+        ssl={'ssl': {}} # Aiven ke liye ye line compulsory hai
     )
 
 @app.route('/', methods=['GET', 'POST'])
