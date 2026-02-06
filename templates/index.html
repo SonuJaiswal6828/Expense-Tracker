@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Expense Tracker | Smart Budget Management</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1><i class="fas fa-wallet header-icon"></i> Expense Tracker</h1>
+      <p>Track your spending and manage your budget effectively</p>
+    </div>
+    
+    <div class="content">
+      <!-- Left Column -->
+      <div class="left-column">
+        <!-- Alerts -->
+        {% if error %}
+        <div class="alert alert-error">
+          <i class="fas fa-exclamation-circle alert-icon"></i>
+          <span><strong>Error:</strong> {{ error }}</span>
+        </div>
+        {% endif %}
+        
+        {% if success %}
+        <div class="alert alert-success">
+          <i class="fas fa-check-circle alert-icon"></i>
+          <span><strong>Success:</strong> {{ success }}</span>
+        </div>
+        {% endif %}
+        
+        <!-- Add Expense Form -->
+        <div class="section">
+          <h2 class="section-title"><i class="fas fa-plus-circle"></i> Add New Expense</h2>
+          <div class="card">
+            <form method="POST">
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="amount"><i class="fas fa-money-bill-wave"></i> Amount (₹)</label>
+                  <input type="number" name="amount" id="amount" placeholder="e.g. 1500" required step="0.01" min="0">
+                </div>
+                
+                <div class="form-group">
+                  <label for="category"><i class="fas fa-tag"></i> Category</label>
+                  <input type="text" name="category" id="category" placeholder="e.g. Food, Transportation" required>
+                </div>
+              </div>
+              
+              <div class="form-group">
+                <label for="note"><i class="fas fa-sticky-note"></i> Note (Optional)</label>
+                <input type="text" name="note" id="note" placeholder="e.g. Dinner with friends">
+              </div>
+              
+              <button type="submit">
+                <i class="fas fa-plus"></i> Add Expense
+              </button>
+            </form>
+          </div>
+        </div>
+        
+        <!-- Category Total -->
+        <div class="section">
+          <h2 class="section-title"><i class="fas fa-chart-pie"></i> Category Summary</h2>
+          <div class="card">
+            <form method="POST">
+              <div class="form-group">
+                <label for="search_category"><i class="fas fa-search"></i> Search Category</label>
+                <input type="text" name="search_category" id="search_category" placeholder="Enter category name">
+              </div>
+              <button type="submit" class="btn-secondary">
+                <i class="fas fa-calculator"></i> Calculate Total
+              </button>
+            </form>
+            
+            {% if category_total is not none %}
+            <div class="total-display">
+              <div class="total-label">Total for category</div>
+              <div class="total-value"><span class="currency">₹</span>{{ category_total }}</div>
+            </div>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+      
+      <!-- Right Column -->
+      <div class="right-column">
+        <!-- Overall Total -->
+        <div class="section">
+          <h2 class="section-title"><i class="fas fa-chart-line"></i> Overall Summary</h2>
+          <div class="card">
+            <div class="stats-container">
+              <div class="stat-card">
+                <div class="stat-value">{{ expenses|length }}</div>
+                <div class="stat-label">Total Expenses</div>
+              </div>
+              
+              <div class="stat-card">
+                <div class="stat-value">
+                  {% if overall_total is not none %}
+                    ₹{{ overall_total }}
+                  {% else %}
+                    ₹0
+                  {% endif %}
+                </div>
+                <div class="stat-label">Total Spent</div>
+              </div>
+            </div>
+            
+            <form method="POST" style="margin-top: 20px;">
+              <button type="submit" name="overall_total">
+                <i class="fas fa-redo"></i> Refresh Totals
+              </button>
+            </form>
+          </div>
+        </div>
+        
+        <!-- Expenses List -->
+        <div class="section">
+          <h2 class="section-title"><i class="fas fa-list-ul"></i> Recent Expenses</h2>
+          
+          {% if expenses %}
+          <ul class="expenses-list">
+            {% for e in expenses %}
+            <li class="expense-item">
+              <div class="expense-info">
+                <div class="expense-amount">₹{{ e.amount }}</div>
+                <div class="expense-category">{{ e.category }}</div>
+                {% if e.note %}
+                <div class="expense-note">{{ e.note }}</div>
+                {% endif %}
+              </div>
+              <div class="expense-actions">
+                <form method="POST" style="display:inline;">
+                  <input type="hidden" name="delete_id" value="{{ e.id }}">
+                  <button type="submit" class="delete-btn" title="Delete Expense">
+                    <i class="fas fa-trash"></i>
+                  </button>
+                </form>
+              </div>
+            </li>
+            {% endfor %}
+          </ul>
+          {% else %}
+          <div class="empty-state">
+            <i class="fas fa-receipt empty-icon"></i>
+            <h3>No expenses yet</h3>
+            <p>Add your first expense using the form on the left</p>
+          </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+    
+    <div class="divider"></div>
+    
+    <div class="footer">
+      <p>Expense Tracker v2.0 • Track your finances smartly</p>
+      <p><i class="fas fa-lightbulb"></i> Tip: Regularly review your expenses to optimize your budget</p>
+    </div>
+  </div>
+
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
